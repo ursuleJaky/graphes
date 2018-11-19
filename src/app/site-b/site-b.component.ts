@@ -9,13 +9,34 @@ import { Chart } from 'chart.js';
 })
 export class SiteBComponent implements OnInit {
 
+  donnees: any;
   constructor(private chartService: ChartService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    console.log('debut B ');
+    await this.delay(3000);
     this.chartService.callSiteB()
     .subscribe(res => {
         console.log(res);
+        this.donnees = res;
     });
+  }
+
+  timeConverter(timestamp) {
+    var a = new Date(timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
 }

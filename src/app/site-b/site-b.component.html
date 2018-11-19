@@ -1,3 +1,15 @@
-<p>
-  site-b works!
-</p>
+<div *ngIf="chart">
+    <canvas>{{ chart }}</canvas>
+  </div>
+  <div class="container">
+      <div class="row" *ngFor="let donnee of donnees">
+          <div *ngFor="let d of donnee">
+            <div *ngIf="donnee.indexOf(d) === 1">
+                *******{{d}}
+            </div>
+            <div *ngIf="donnee.indexOf(d) !== 1">
+                {{timeConverter(d)}}
+            </div>
+          </div>
+      </div>
+  </div>

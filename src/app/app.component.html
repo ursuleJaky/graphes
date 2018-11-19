@@ -1,6 +1,57 @@
-<select (change)="navigateTo($event.target.value)">
-    <option value="home">--Choisir un site--</option>
-    <option *ngFor="let s of sites" value="{{s.name}}">{{s.name}}</option>
-</select>
+<script>src="d3.min.js"</script>
+<div class="container spacer">
+    <div class="row">
+        <div class="col-sm-3">
+            <select (change)="navigateTo($event.target.value)">
+                <option value="home">--Choisir un site--</option>
+                <option *ngFor="let s of sites" value="{{s.name}}">{{s.name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary" (click)="cancel = true">Cancel</button>
+        </div>
+    </div>
+    
+</div>
 
+<!-- <script>
+        window.onload = function () {
+        
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: false,
+            theme: "light2",
+            title:{
+                text: "Simple Line Chart"
+            },
+            axisY:{
+                includeZero: false
+            },
+            data: [{        
+                type: "line",       
+                dataPoints: [
+                    { x: 51, y: 450 },
+                    { x: 52, y: 414},
+                    { x: 53,y: 520 },
+                    { x: 54, y: 460 },
+                    { x: 55, y: 450 },
+                    { x: 56, y: 500 },
+                    { x: 81, y: 480 },
+                    { x: 82, y: 480 },
+                    { x: 83, y: 410 },
+                    { x: 84, y: 500 },
+                    { x: 85, y: 480 },
+                    { x: 86, y: 510 }
+                ]
+            }]
+        });
+        chart.render();
+        
+        }
+        </script>
+        
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
 <router-outlet></router-outlet>
+
+
+

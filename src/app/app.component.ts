@@ -16,6 +16,7 @@ export class AppComponent {
     selectedValue = 'faites une selection';
 
   constructor(private router: Router) {}
+  
   navigateTo(value) {
     if (value) {
         this.router.navigate([value]);

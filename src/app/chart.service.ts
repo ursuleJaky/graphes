@@ -8,12 +8,14 @@ export class ChartService {
   constructor(private _http: HttpClient) { }
 
   callSiteA() {
-    return this._http.get("http://localhost:8080/persons/siteA")
+    //return this._http.get("http://localhost:8080/persons/siteA")
+    return this._http.get("http://localhost:8000/siteA.json")
     .pipe(map(result=>result));
   }
 
   callSiteB() {
-    return this._http.get("http://localhost:8080/persons/siteB")
+    //return this._http.get("http://localhost:8080/persons/siteB")
+    return this._http.get("http://localhost:8000/siteB.json")
     .pipe(map(result=>result));
   }
   
