@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartService } from '../chart.service';
-import { Chart } from 'chart.js';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-site-b',
@@ -10,16 +10,18 @@ import { Chart } from 'chart.js';
 export class SiteBComponent implements OnInit {
 
   donnees: any;
-  constructor(private chartService: ChartService) { }
+  constructor(private chartService: ChartService, private app: AppComponent) { }
 
   async ngOnInit() {
-    console.log('debut B ');
     await this.delay(3000);
-    this.chartService.callSiteB()
-    .subscribe(res => {
-        console.log(res);
-        this.donnees = res;
-    });
+    if(!this.app.cancel) {
+      this.chartService.callSiteB()
+        .subscribe(res => {
+            console.log(res);
+            this.donnees = res;
+        });
+    }
+    
   }
 
   timeConverter(timestamp) {

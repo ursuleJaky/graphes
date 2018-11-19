@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartService } from '../chart.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Chart } from 'chart.js';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-site-a',
@@ -10,50 +9,18 @@ import { Chart } from 'chart.js';
 })
 export class SiteAComponent implements OnInit {
 
-  chart: any;
   donnees: any;
-  constructor(private chartService: ChartService, private _http: HttpClient) { }
+  constructor(private chartService: ChartService, private app: AppComponent) { }
   
   async ngOnInit() {
-    //await this.syncEvaluations();
-    console.log('debut A ');
     await this.delay(3000);
-    this.chartService.callSiteA()
-    .subscribe(res => {
-        console.log(res);
-        this.donnees = res;
-        // this.chart = new Chart('canvas', {
-        //   type: 'line',
-        //   data: {
-        //     labels: res,
-        //     datasets: [
-        //       {
-        //         data: res['entiers'],
-        //         borderColor: '#3cba9f',
-        //         fill: false
-        //       },
-        //       {
-        //         data: res['doubles'],
-        //         borderColor: '#3ffcc00',
-        //         fill: false
-        //       }
-        //     ]
-        //   },
-        //   options: {
-        //     legend: {
-        //       display: false
-        //     },
-        //     scales: {
-        //       xAxes: [{
-        //         display: true
-        //       }],
-        //       yAxes: [{
-        //         display: true
-        //       }]
-        //     }
-        //   }
-        // })
-    });  
+    if(!this.app.cancel) {
+      this.chartService.callSiteA()
+        .subscribe(res => {
+            console.log(res);
+            this.donnees = res;
+        });
+    }  
   }
 
   delay(ms: number) {
@@ -72,14 +39,4 @@ export class SiteAComponent implements OnInit {
     var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;
   }
-  /*syncEvaluations(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this._http.get("http://localhost:8000/siteA.json")
-        .done((res) => {
-            
-            resolve();
-        });
-        
-    });
-}*/
 }

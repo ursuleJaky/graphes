@@ -1,6 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ChartService } from '../chart.service';
-import { Chart } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +6,10 @@ import { Chart } from 'chart.js';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // @ViewChild('canvas') canvas: ElementRef;
-@ViewChild('canvas', {read: ElementRef}) canvas: ElementRef;
-
-
-
 
   chart: any;
 
-  constructor(private chartService: ChartService) { }
-
+  constructor() { }
  
   ngOnInit() {
     
